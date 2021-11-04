@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Daycycle</title>
+        <style>
+            body{
+                background: #87CEEB;
+                overflow: hidden;
+                background-size: 200vw 200vh;
+                margin: 0;
+                padding: 0;
+            }
+
+            .sky{
+                width: 100%;
+                height: 200vh;
+                position: absolute;
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                place-items: center;
+                animation: rotate-sky 50s 13s infinite linear;
+                margin-top: 2.5em;
+                z-index: 3;
+            }
+
+            @keyframes rotate-sky {
+                0%{
+                    transform: rotate(0deg);
+                }
+                50%{
+                    transform: rotate(180deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+
+            .sun, .moon{
+                border-radius: 50%;
+                height: 5em;
+                width: 5em;
+            }
+
+            .sun{
+                background-color: yellow;
+                margin-right: 2em;
+                box-shadow: yellow 0px 0px 50px 15px;
+                animation: sun 25s 13s infinite cubic-bezier(.5,0,.5,1), sun-start 13s linear;
+            }
+
+            @keyframes sun {
+                0%{
+                    box-shadow: yellow 0px 0px 50px 15px;
+                }
+                50%{
+                    box-shadow: yellow 0 0 30px 5px;
+                }
+                100%{
+                    box-shadow: yellow 0px 0px 50px 15px;
+                }
+            }
+
+            @keyframes sun-start{
+                0%{
+                    transform: translateY(100%);
+                }
+                100%{
+                    transform: translateY(0%);
+                }
+            }
+
+            .moon{
+                background-color: white;
+                margin-left: 2em;
+
+                animation: moon 25s infinite cubic-bezier(.5,0,.5,1);
+                animation-delay: 38s;
+            }
+
+            @keyframes moon {
+                0%{
+                    box-shadow: white 0 0 30px 5px;
+                }
+                50%{
+                    box-shadow: white 0px 0px 50px 15px;
+                }
+                100%{
+                    box-shadow: white 0 0 30px 5px;
+                }
+            }
+
+            .stars, .clouds, .twinkle{
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+                z-index:0;
+            }
+
+            .clouds{
+                background: transparent url(https://www.pngkey.com/png/full/1-14969_clouds-realistic-cloud-clouds-png.png)
+                            repeat top center;
+                animation: move-twink-back 1000s linear infinite, fade-clouds 50s infinite cubic-bezier(0.5,0,0.5,1);
+                z-index: 2;
+            }
+
+            @keyframes fade-clouds {
+                0%{
+                    opacity: 0.1;
+                }
+                50%{
+                    opacity: 1;
+                }
+                100%{
+                    opacity: 0.1;
+                }
+            }
+
+            .twinkle{
+                background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+                
+                animation: move-twink-back 200s linear infinite, fade-twinkle 50s infinite cubic-bezier(0.5,0,0.5,1);
+                z-index:1;
+            }
+
+            @keyframes fade-twinkle {
+                0%{
+                    opacity: 1;
+                }
+                10%{
+                    opacity: 0;
+                }
+                90%{
+                    opacity: 0;
+                }
+                100%{
+                    opacity: 1;
+                }
+            }
+
+            .stars {
+                background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+                animation: fade-stars 50s infinite cubic-bezier(0.5,0,0.5,1);
+            }
+
+            @keyframes fade-stars {
+                0%{
+                    opacity: 1;
+                }
+                50%{
+                    opacity: 0;
+                }
+                100%{
+                    opacity: 1;
+                }
+            }
+
+            @keyframes move-twink-back {
+                from {background-position:0 0;}
+                to {background-position:-10000px 5000px;}
+            }
+            
+        </style>
+        </head>
+        <body>
+            <div class="clouds"></div>
+            <div class="twinkle"></div>
+            <div class="stars"></div>
+            <div class="sky">
+                <div class="sun"></div>
+                <div class="moon"></div>
+            </div>
+        </body>
+    </html>
